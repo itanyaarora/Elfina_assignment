@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elfina · Referral Channel Strategy</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FCFCFC;--fg:#232823;--muted:#6e726c;
+  --card:#FFFFFF;--border:#E6E7E2;--soft:#F1F3EF;
+  --green:#344e35;--green-bg:#E7EEE7;--green-soft:#5C8A4F;
+  --sage-faint:#F2F5F1;
+  --slide-w:1000px;
+}
+html{font-size:18px}
+body{font-family:'Urbanist',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow:hidden;height:100vh;width:100vw}
+.deck{position:relative;width:100%;height:100vh;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s ease;transform:translateY(18px)}
+.slide.active{opacity:1;pointer-events:auto;transform:translateY(0)}
+.slide-inner{width:min(var(--slide-w),90vw);max-height:90vh;padding:2.2rem 0;overflow-y:auto}
+.slide-inner::-webkit-scrollbar{display:none}
+
+.logo{width:180px;height:auto;display:block;margin-bottom:1.8rem}
+.slide-num{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:1.5rem;font-weight:400}
+
+h1{font-size:3rem;font-weight:300;line-height:1.12;letter-spacing:-.03em;margin-bottom:1.1rem}
+h1 strong{font-weight:800;color:var(--green)}
+h2{font-size:1.9rem;font-weight:300;line-height:1.22;letter-spacing:-.02em;margin-bottom:.7rem}
+h2 strong{font-weight:700}
+.subtitle{font-size:1.05rem;color:var(--muted);line-height:1.65;max-width:40em;font-weight:400}
+.meta{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--muted);margin-top:2rem;letter-spacing:.04em}
+.lede{font-size:1.05rem;color:var(--muted);line-height:1.65;max-width:42em;font-weight:400;margin-top:1.4rem}
+.lede strong{color:var(--fg);font-weight:700}
+
+/* channel flow nodes */
+.row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.chip{padding:.55rem 1rem;border-radius:8px;font-size:.92rem;font-weight:500;background:var(--soft);color:var(--muted);border:1px solid var(--border)}
+.chip.is-pick{background:var(--green);color:#fff;border-color:var(--green);font-weight:600}
+
+/* cards */
+.cards{display:grid;gap:1.1rem;margin-top:1.8rem}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.45rem}
+.card.is-pick{border-color:var(--green);background:var(--green-bg)}
+.card-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem;color:var(--muted);font-weight:400}
+.card.is-pick .card-label{color:var(--green)}
+.card h3{font-size:1.02rem;font-weight:700;margin-bottom:.4rem}
+.card p{font-size:.88rem;color:var(--muted);line-height:1.55;font-weight:400}
+
+/* persona */
+.persona{display:flex;align-items:center;gap:2.2rem;margin-top:1.8rem}
+.persona-mark{width:130px;height:130px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.persona-mark svg{width:58px;height:58px;color:var(--green)}
+.persona-body h2{margin-bottom:1rem}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem}
+.tag{font-size:.84rem;padding:.32rem .7rem;border-radius:20px;font-weight:500;background:var(--sage-faint);color:var(--green);border:1px solid var(--green-bg)}
+
+/* comparison grid */
+.grid-cmp{margin-top:1.6rem}
+.grid-cmp .gh{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:0;padding-bottom:.7rem}
+.grid-cmp .gh div{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.grid-cmp .gh div:last-child{color:var(--green);font-weight:400}
+.grid-cmp .gr{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:0;padding:.85rem 0;border-top:1px solid var(--border);font-size:.88rem;font-weight:400}
+.grid-cmp .gr .lbl{font-weight:600;color:var(--fg)}
+.grid-cmp .gr .pick{color:var(--green);font-weight:600}
+.grid-cmp .gr div{color:var(--muted);padding-right:.6rem}
+
+/* big stat */
+.stat{margin-top:1.8rem;display:flex;align-items:baseline;gap:1.1rem}
+.stat .big{font-size:4.4rem;font-weight:300;letter-spacing:-.04em;line-height:1;color:var(--green)}
+.stat .cap{font-size:.95rem;color:var(--muted);font-weight:400;max-width:16em;line-height:1.5}
+
+/* referral flow */
+.flow{display:flex;align-items:stretch;gap:.5rem;margin-top:1.8rem;flex-wrap:wrap}
+.flow-step{flex:1;min-width:140px;background:var(--soft);border:1px solid var(--border);border-radius:9px;padding:.95rem .8rem;font-size:.86rem;font-weight:600;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.3}
+.flow-step.s-start{background:var(--card);border-color:var(--green)}
+.flow-step.s-end{background:var(--green);color:#fff;border-color:var(--green)}
+.flow-arrow{display:flex;align-items:center;color:var(--green);font-weight:800;font-size:1.1rem}
+.flow-cap{font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.6rem}
+
+/* pipeline */
+.pipeline{display:flex;flex-direction:column;margin-top:1.6rem}
+.pipe-step{display:flex;gap:1.1rem;position:relative;padding-left:1.9rem;padding-bottom:1.3rem}
+.pipe-step::before{content:'';position:absolute;left:.42rem;top:1.5rem;width:1.5px;height:calc(100% - .9rem);background:var(--green);opacity:.3}
+.pipe-step:last-child{padding-bottom:0}
+.pipe-step:last-child::before{display:none}
+.pipe-dot{width:.95rem;height:.95rem;border-radius:50%;background:var(--green-bg);border:2px solid var(--green);flex-shrink:0;position:absolute;left:0;top:.2rem}
+.pipe-content h4{font-size:.97rem;font-weight:700;margin-bottom:.15rem}
+.pipe-content h4 span{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);font-weight:400;margin-left:.5rem}
+.pipe-content p{font-size:.85rem;color:var(--muted);line-height:1.5;font-weight:400}
+.pipe-content .tgt{font-size:.8rem;color:var(--green);font-weight:600;margin-top:.2rem}
+
+/* accent list */
+.alist{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.8rem}
+.aitem{border-left:3px solid var(--green);padding:.3rem 0 .3rem 1.1rem}
+.aitem h4{font-size:.98rem;font-weight:700;margin-bottom:.25rem}
+.aitem p{font-size:.85rem;color:var(--muted);line-height:1.5;font-weight:400}
+
+/* sources */
+.srcs{margin-top:1.6rem;columns:2;column-gap:2.5rem}
+.srcs li{font-size:.8rem;color:var(--muted);line-height:1.5;margin-bottom:.55rem;list-style:none;break-inside:avoid;padding-left:1rem;position:relative}
+.srcs li::before{content:'';position:absolute;left:0;top:.5rem;width:4px;height:4px;border-radius:50%;background:var(--green)}
+.srcs a{color:var(--green);word-break:break-word}
+
+.closing{font-size:1.05rem;color:var(--fg);font-weight:500;margin-top:1.5rem;padding:.9rem 1.1rem;background:var(--green-bg);border-radius:9px;border-left:3px solid var(--green)}
+
+/* nav */
+.nav{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:.9rem;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:40px;padding:.45rem .75rem;box-shadow:0 4px 22px rgba(31,36,32,.08)}
+.nav button{width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;background:transparent;color:var(--fg);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.nav button:hover{background:var(--soft)}
+.nav button:disabled{opacity:.2;cursor:default}
+.nav button:disabled:hover{background:transparent}
+.nav-dots{display:flex;gap:7px;align-items:center}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:#C9CCC6;transition:all .2s;cursor:pointer;border:none}
+.nav-dot:hover{background:#8a8d86}
+.nav-dot.active{background:var(--green);width:22px;border-radius:9px}
+
+.slide.active .fade-up{animation:fadeUp .5s ease both}
+.slide.active .fade-up:nth-child(2){animation-delay:.07s}
+.slide.active .fade-up:nth-child(3){animation-delay:.14s}
+.slide.active .fade-up:nth-child(4){animation-delay:.21s}
+.slide.active .fade-up:nth-child(5){animation-delay:.28s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:720px){
+  html{font-size:15px}
+  h1{font-size:2.2rem}
+  .cards-3{grid-template-columns:1fr}
+  .persona{flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .alist{grid-template-columns:1fr}
+  .srcs{columns:1}
+  .flow-arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- SLIDE 0 · Title -->
+<div class="slide active" data-slide="0">
+  <div class="slide-inner">
+    <img class="logo fade-up" src="elfina_logo.avif" alt="Elfina Health">
+    <div class="slide-num fade-up">Founder's Office Assignment · Part 1</div>
+    <h1 class="fade-up">Should Elfina build a referral channel,<br><strong>and with whom?</strong></h1>
+    <p class="subtitle fade-up">A strategy memo on which referral partnership Elfina should build first.</p>
+    <div class="meta fade-up">Tanya Arora &nbsp;·&nbsp; 18 May 2026</div>
+  </div>
+</div>
+
+<!-- SLIDE 1 · Recommendation -->
+<div class="slide" data-slide="1">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">01 · Recommendation</div>
+    <h2 class="fade-up">All three channels work.<br><strong>Fertility clinics come first.</strong></h2>
+    <div class="row fade-up">
+      <span class="chip">Psychiatrists</span>
+      <span class="chip">Gynaecologists</span>
+      <span class="chip is-pick">Fertility clinics</span>
+    </div>
+    <p class="lede fade-up">Psychiatrists, gynaecologists and fertility clinics are all valid referral partners over time. But they are not equal <em>first</em> bets. Given Elfina's size today, <strong>fertility clinics come first</strong>: the patients are exactly who Elfina is built for, the funnel is small enough to serve well, and it is concentrated enough for a lean team to reach.</p>
+  </div>
+</div>
+
+<!-- SLIDE 2 · Who Elfina is for -->
+<div class="slide" data-slide="2">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">02 · Who Elfina is for</div>
+    <div class="persona fade-up">
+      <div class="persona-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8.5" r="4"/>
+          <path d="M4.5 20.5c0-4.3 3.4-7.5 7.5-7.5s7.5 3.2 7.5 7.5"/>
+        </svg>
+      </div>
+      <div class="persona-body">
+        <h2>The <strong>urban millennial professional.</strong></h2>
+        <div class="tags">
+          <span class="tag">Urban</span>
+          <span class="tag">Educated</span>
+          <span class="tag">25–40</span>
+          <span class="tag">Pays out of pocket</span>
+          <span class="tag">Already open to therapy</span>
+          <span class="tag">Individual or couples</span>
+        </div>
+      </div>
+    </div>
+    <p class="lede fade-up">Elfina's own words name the customer: the founder calls them <strong>"working professionals,"</strong> the company blurb a platform for <strong>"millennials in India."</strong> One detail to hold onto: Elfina matches couples, not only individuals. Every channel is judged on one question: does it deliver this person?</p>
+  </div>
+</div>
+
+<!-- SLIDE 3 · Who is in each clinic -->
+<div class="slide" data-slide="3">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">03 · Who is in each clinic</div>
+    <h2 class="fade-up">The three channels don't see the <strong>same patient.</strong></h2>
+    <div class="cards cards-3 fade-up">
+      <div class="card">
+        <div class="card-label">Psychiatrist</div>
+        <h3>A wide clinical spectrum</h3>
+        <p>Anxiety and depression through to addiction and acute conditions. Medication-led, clinically complex, and most psychiatrists already work with their own therapists.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Gynaecologist</div>
+        <h3>Real weight, rarely named</h3>
+        <p>Women across reproductive life: pregnancy, postpartum, PCOS, menopause. The emotional weight is real but quietly under-discussed.</p>
+      </div>
+      <div class="card is-pick">
+        <div class="card-label">Fertility clinic</div>
+        <h3>Couples, in a hard chapter</h3>
+        <p>Couples going through IVF: urban, educated, mid-to-higher income. Already in an emotionally heavy chapter where support simply helps.</p>
+      </div>
+    </div>
+    <div class="closing fade-up">Only fertility-clinic patients are naturally ready for what Elfina offers. And, as couples, they fit the couples therapy Elfina already does.</div>
+  </div>
+</div>
+
+<!-- SLIDE 4 · Why fertility wins -->
+<div class="slide" data-slide="4">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">04 · Why fertility wins the first bet</div>
+    <h2 class="fade-up">The obvious ranking <strong>inverts.</strong></h2>
+    <div class="grid-cmp fade-up">
+      <div class="gh"><div>&nbsp;</div><div>Psychiatrists</div><div>Gynaecologists</div><div>Fertility</div></div>
+      <div class="gr"><div class="lbl">Raw pipeline</div><div>Highest need density</div><div>Largest, 25M+ births</div><div class="pick">Smallest, ~275K cycles</div></div>
+      <div class="gr"><div class="lbl">Elfina's customer?</div><div>Mixed</div><div>A small urban slice</div><div class="pick">A large, defined slice</div></div>
+      <div class="gr"><div class="lbl">Serveable today</div><div>No, existing tie-ups</div><div>No, too scattered</div><div class="pick">Yes, a few chains</div></div>
+    </div>
+    <div class="stat fade-up">
+      <div class="big">≈200K</div>
+      <div class="cap">distressed, customer-fit fertility patients a year, reachable through three or four chains.</div>
+    </div>
+    <p class="lede fade-up">The point isn't the biggest pipeline; it's the best fit for what Elfina can serve today. Fertility wins on <strong>customer fit</strong>, <strong>low resistance</strong> (already spending lakhs, already help-seeking), and being <strong>serveable now</strong>.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5 · How we'd go about it -->
+<div class="slide" data-slide="5">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">05 · How we would go about it</div>
+    <h2 class="fade-up"><strong>Two-mode model.</strong> One 90-day pilot.</h2>
+    <div class="flow fade-up">
+      <div class="flow-step s-start">Clinic flags a struggling patient</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Free matching call</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">Matched to a screened therapist</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step s-end">Ongoing therapy</div>
+    </div>
+    <p class="flow-cap fade-up">The clinic owns the first step. Elfina owns the rest. Clinics without counselling take a goodwill referral; those that already counsel take Elfina as an escalation tier.</p>
+    <div class="pipeline fade-up">
+      <div class="pipe-step">
+        <div class="pipe-dot"></div>
+        <div class="pipe-content">
+          <h4>Land <span>Days 1–30</span></h4>
+          <p>Sign ART Fertility: premium, metro, no in-house counsellor. One city, 3–5 centres. Build the referral kit; train doctors + front-desk.</p>
+          <div class="tgt">Target: pilot live in one city by day 30</div>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-dot"></div>
+        <div class="pipe-content">
+          <h4>Run <span>Days 31–60</span></h4>
+          <p>Doctors hand the card to distressed patients. Matching call within 24h. Weekly check-ins; loop-closing notes to referring doctors.</p>
+          <div class="tgt">Target: 30+ referrals / centre / month · 25%+ call→session</div>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-dot"></div>
+        <div class="pipe-content">
+          <h4>Decide &amp; scale <span>Days 61–90</span></h4>
+          <p>Review conversion per centre. Cut the dead ones, double down on the rest. If it clears the bar, expand to city #2.</p>
+          <div class="tgt">Target: a clear go / no-go on city #2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6 · Risks and constraints -->
+<div class="slide" data-slide="6">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">06 · Risks &amp; constraints</div>
+    <h2 class="fade-up">What I'd <strong>watch.</strong></h2>
+    <div class="alist fade-up">
+      <div class="aitem">
+        <h4>Competition</h4>
+        <p>Half the major IVF chains already advertise in-house counselling, so the play is the half that don't. Elfina's wedge: matched clinical therapy, a tier deeper.</p>
+      </div>
+      <div class="aitem">
+        <h4>Time-bounded value</h4>
+        <p>A fertility patient's therapy need fades when the journey ends, a shorter lifetime value than postpartum into parenting.</p>
+      </div>
+      <div class="aitem">
+        <h4>Legality</h4>
+        <p>Indian medical-conduct rules prohibit paying for referrals. The model is a partnership, not a paid channel; money flows clinic-to-Elfina for a service delivered.</p>
+      </div>
+      <div class="aitem">
+        <h4>The economics</h4>
+        <p>Everything rests on Elfina's revenue per patient and the matching-call conversion rate, the number to confirm before scaling.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7 · Sources -->
+<div class="slide" data-slide="7">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">07 · Sources</div>
+    <h2 class="fade-up"><strong>Sources.</strong></h2>
+    <ul class="srcs fade-up">
+      <li>IVF cycles &amp; India fertility industry, <a href="https://www.biospectrumindia.com/news/17/27214/top-trends-driving-indias-ivf-industry-in-2026.html">BioSpectrum India</a></li>
+      <li>Therapy-relevant distress in fertility patients (~78%), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7139230/">PMC</a></li>
+      <li>In-clinic postpartum therapy uptake (90%+), <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2024.1284674/full">Frontiers</a></li>
+      <li>Postpartum depression prevalence in India (~22%), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5689195/">PMC</a></li>
+      <li>National Mental Health Survey 2016, <a href="https://pubmed.ncbi.nlm.nih.gov/32126902/">PubMed</a></li>
+      <li>Fertility-clinic audit: procedures, pricing tier &amp; in-house counselling across 12 chains (clinic websites)</li>
+      <li>Elfina's stated audience: founder post, Grapevine &amp; Elfina company blurb</li>
+      <li>Referral fee-splitting prohibition: IMC Professional Conduct Regulations 2002, Clause 6.4</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="nav">
+  <button id="prev" onclick="go(-1)" disabled>&#8592;</button>
+  <div class="nav-dots" id="dots"></div>
+  <button id="next" onclick="go(1)">&#8594;</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dots=document.getElementById('dots');
+const total=slides.length;
+let cur=0;
+for(let i=0;i<total;i++){
+  const d=document.createElement('button');
+  d.className='nav-dot'+(i===0?' active':'');
+  d.onclick=()=>goTo(i);
+  dots.appendChild(d);
+}
+function goTo(n){
+  if(n<0||n>=total)return;
+  slides[cur].classList.remove('active');
+  dots.children[cur].classList.remove('active');
+  cur=n;
+  slides[cur].classList.add('active');
+  dots.children[cur].classList.add('active');
+  document.getElementById('prev').disabled=cur===0;
+  document.getElementById('next').disabled=cur===total-1;
+}
+function go(d){goTo(cur+d)}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')go(1);
+  if(e.key==='ArrowLeft')go(-1);
+});
+</script>
+</body>
+</html>
