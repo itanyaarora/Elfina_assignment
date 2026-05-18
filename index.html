@@ -234,6 +234,36 @@ h2 strong{font-weight:700}
 .slide.active .fade-up:nth-child(5){animation-delay:.28s}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+/* user research profiles */
+.ur-part{font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:400;margin-bottom:.5rem}
+.ur-profile{display:flex;gap:1.8rem;margin-top:1.5rem}
+.ur-photo{width:140px;height:140px;border-radius:14px;background:var(--sage-faint);border:1.5px dashed var(--green-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;flex-shrink:0;overflow:hidden}
+.ur-photo img{width:100%;height:100%;object-fit:cover;border-radius:14px;display:none}
+.ur-photo svg{width:32px;height:32px;color:var(--green-soft)}
+.ur-photo-label{font-size:.6rem;font-family:'DM Mono',monospace;color:var(--green);letter-spacing:.1em;text-transform:uppercase}
+.ur-bio{flex:1;min-width:0}
+.ur-name{font-size:1.5rem;font-weight:700;color:var(--fg);line-height:1.2;margin-bottom:.25rem}
+.ur-meta-row{display:flex;gap:1rem;margin-bottom:1rem}
+.ur-tag{font-size:.76rem;font-family:'DM Mono',monospace;color:var(--muted);background:var(--soft);padding:.25rem .6rem;border-radius:6px;border:1px solid var(--border)}
+.ur-responses{display:flex;flex-direction:column;gap:1.1rem}
+.ur-q{font-size:.78rem;font-weight:600;color:var(--green);margin-bottom:.3rem;padding-bottom:.25rem;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:.04em;font-family:'DM Mono',monospace}
+.ur-a{font-size:.86rem;color:var(--fg);line-height:1.6;font-weight:400;padding-left:.7rem;border-left:2px solid var(--green-bg)}
+.ur-wordmap{width:100%;border-radius:14px;background:var(--sage-faint);padding:2.2rem 2rem;margin-top:1.2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem .8rem;line-height:1.8}
+.wm{display:inline-block;font-family:'Urbanist',sans-serif;color:var(--green);cursor:default;transition:opacity .2s}
+.wm-1{font-size:.72rem;color:var(--muted);font-weight:400;opacity:.6}
+.wm-2{font-size:.88rem;color:var(--muted);font-weight:500;opacity:.75}
+.wm-3{font-size:1.1rem;color:var(--fg);font-weight:600}
+.wm-4{font-size:1.45rem;color:var(--green);font-weight:700}
+.wm-5{font-size:1.9rem;color:var(--green);font-weight:800}
+.ur-synth{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.3rem}
+.ur-synth-card{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:1.3rem 1.4rem}
+.ur-synth-card.is-green{background:var(--green);color:#fff;border-color:var(--green)}
+.ur-synth-label{font-size:.68rem;font-family:'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;font-weight:400}
+.ur-synth-card.is-green .ur-synth-label{color:rgba(255,255,255,.7)}
+.ur-synth-title{font-size:1.15rem;font-weight:700;line-height:1.25;margin-bottom:.5rem}
+.ur-synth-body{font-size:.88rem;line-height:1.6;font-weight:400;color:var(--muted)}
+.ur-synth-card.is-green .ur-synth-body{color:rgba(255,255,255,.8)}
+
 @media(max-width:720px){
   html{font-size:15px}
   h1{font-size:2.2rem}
@@ -459,70 +489,25 @@ h2 strong{font-weight:700}
   </div>
 </div>
 
-<!-- SLIDE 8 · The conventional ways -->
+<!-- SLIDE 8 · B2B Playbook -->
 <div class="slide" data-slide="8">
   <div class="slide-inner">
-    <div class="slide-num fade-up">08 · The conventional ways</div>
-    <h2 class="fade-up">Start with the <strong>obvious playbook.</strong></h2>
-    <p class="lede fade-up" style="margin-top:.7rem">Roughly half the major IVF chains have no in-house counselling. That is the opening.</p>
+    <div class="slide-num fade-up">08 · B2B playbook</div>
+    <h2 class="fade-up">The <strong>B2B playbook.</strong></h2>
 
-    <div class="s8-grid fade-up">
-      <div>
-        <div class="s8-label">No counselling — targets</div>
-        <div class="s8-cards">
-          <div class="s8-card">
-            <a class="s8-name" href="https://indiraivf.com" target="_blank">Indira IVF</a>
-            <span class="s8-ct">165+ centres</span>
-            <a class="s8-who" href="https://linkedin.com/in/kshitiz-murdia-b63948250/" target="_blank">Dr. Kshitiz Murdia, CEO</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://seedsofinnocens.com" target="_blank">Seeds of Innocence</a>
-            <span class="s8-ct">35+ centres</span>
-            <a class="s8-who" href="https://linkedin.com/in/drgauriagarwal" target="_blank">Dr. Gauri Agarwal, Founder</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://crystaivf.com" target="_blank">Crysta IVF</a>
-            <span class="s8-ct">19+ centres</span>
-            <a class="s8-who" href="https://uk.linkedin.com/in/dheeraj-jain-4961352" target="_blank">Dheeraj Jain, Founder</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://medicoverfertility.in" target="_blank">Medicover Fertility</a>
-            <span class="s8-ct">16 centres</span>
-            <a class="s8-who" href="https://in.linkedin.com/in/gmalhot" target="_blank">Gaurav Malhotra, MD</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://garbhagudi.com" target="_blank">GarbhaGudi</a>
-            <span class="s8-ct">10 centres</span>
-            <a class="s8-who" href="https://linkedin.com/in/vijay-kumar-s-63874275/" target="_blank">Vijay Kumar S, CEO</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://milann.co.in" target="_blank">Milann</a>
-            <span class="s8-ct">8 centres</span>
-            <a class="s8-who" href="https://linkedin.com/in/dr-kamini-rao-46920a82/" target="_blank">Dr. Kamini Rao, Founder</a>
-          </div>
-          <div class="s8-card">
-            <a class="s8-name" href="https://bloomivf.com" target="_blank">Bloom IVF</a>
-            <span class="s8-ct">8 centres</span>
-            <a class="s8-who" href="https://in.linkedin.com/in/hrishikeshpai" target="_blank">Dr. Hrishikesh Pai, Founder</a>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="s8-label s8-muted">Has counselling — later</div>
-        <div class="s8-later">
-          <div class="s8-li"><a href="https://novaivffertility.com" target="_blank">Nova IVF</a> <span class="s8-ct">120+ centres</span></div>
-          <div class="s8-li"><a href="https://birlafertility.com" target="_blank">Birla Fertility</a> <span class="s8-ct">50+ centres</span></div>
-          <div class="s8-li"><a href="https://cloudninecare.com" target="_blank">Cloudnine</a> <span class="s8-ct">45+ centres</span></div>
-          <div class="s8-li"><a href="https://oasisfertility.com" target="_blank">Oasis Fertility</a> <span class="s8-ct">35+ centres</span></div>
-          <div class="s8-li"><a href="https://ferty9.com" target="_blank">Ferty9</a> <span class="s8-ct">11 centres</span></div>
-        </div>
-      </div>
+    <div class="fade-up" style="margin-top:1rem">
+      <p class="lede" style="margin-top:0">Build a database of every major IVF chain. Segregate by one filter: does the clinic have an in-house counselling arm? Most don't. Those are the targets.</p>
     </div>
 
-    <div class="s8-flow fade-up">
+    <div class="s8-flow fade-up" style="margin-top:1.2rem;padding-top:0;border-top:none">
+      <div class="s8-step">
+        <strong>Build the list</strong>
+        <span>Database of IVF chains, filtered by counselling arm</span>
+      </div>
+      <div class="s8-arr">&rarr;</div>
       <div class="s8-step">
         <strong>Reach out</strong>
-        <span>LinkedIn DMs, cold emails, industry connections</span>
+        <span>LinkedIn DMs, cold connections to founders and decision-makers</span>
       </div>
       <div class="s8-arr">&rarr;</div>
       <div class="s8-step">
@@ -532,10 +517,35 @@ h2 strong{font-weight:700}
       <div class="s8-arr">&rarr;</div>
       <div class="s8-step s8-goal">
         <strong>Founder pitches</strong>
-        <span>The referral partnership program</span>
+        <span>The vision and referral partnership program</span>
       </div>
     </div>
     <p class="fade-up" style="font-size:.72rem;color:var(--muted);margin-top:.5rem;font-family:'DM Mono',monospace">Outreach and call booking handled by the Founder's Office.</p>
+
+    <div class="fade-up" style="margin-top:1.2rem;background:var(--green-bg);border-radius:13px;padding:1.1rem 1.3rem;display:grid;grid-template-columns:3fr 2fr;gap:1.6rem">
+      <div>
+        <div class="s8-label" style="margin-bottom:.45rem">No counselling arm — our targets</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem">
+          <a href="https://indiraivf.com" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Indira IVF <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">165+</span></a>
+          <a href="https://seedsofinnocens.com" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Seeds of Innocence <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">35+</span></a>
+          <a href="https://crystaivf.com" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Crysta IVF <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">19+</span></a>
+          <a href="https://medicoverfertility.in" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Medicover <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">16</span></a>
+          <a href="https://garbhagudi.com" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">GarbhaGudi <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">10</span></a>
+          <a href="https://milann.co.in" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Milann <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">8</span></a>
+          <a href="https://bloomivf.com" target="_blank" style="font-size:.82rem;font-weight:600;color:var(--green);text-decoration:none;background:#fff;padding:.25rem .55rem;border-radius:6px;border:1px solid var(--border)">Bloom IVF <span style="font-weight:400;font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace">8</span></a>
+        </div>
+      </div>
+      <div>
+        <div class="s8-label s8-muted" style="margin-bottom:.45rem">Has counselling — later</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem">
+          <span style="font-size:.8rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.5);padding:.2rem .5rem;border-radius:6px">Nova IVF <span style="font-size:.66rem;font-family:'DM Mono',monospace">120+</span></span>
+          <span style="font-size:.8rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.5);padding:.2rem .5rem;border-radius:6px">Birla Fertility <span style="font-size:.66rem;font-family:'DM Mono',monospace">50+</span></span>
+          <span style="font-size:.8rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.5);padding:.2rem .5rem;border-radius:6px">Cloudnine <span style="font-size:.66rem;font-family:'DM Mono',monospace">45+</span></span>
+          <span style="font-size:.8rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.5);padding:.2rem .5rem;border-radius:6px">Oasis <span style="font-size:.66rem;font-family:'DM Mono',monospace">35+</span></span>
+          <span style="font-size:.8rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.5);padding:.2rem .5rem;border-radius:6px">Ferty9 <span style="font-size:.66rem;font-family:'DM Mono',monospace">11</span></span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -628,49 +638,176 @@ h2 strong{font-weight:700}
   </div>
 </div>
 
-<!-- SLIDE 13 · Risks and constraints -->
+<!-- SLIDE 13 · Part 2 divider -->
 <div class="slide" data-slide="13">
+  <div class="slide-inner" style="text-align:center">
+    <div class="ur-part fade-up">Part 2</div>
+    <h1 class="fade-up"><strong>User Research</strong></h1>
+    <p class="lede fade-up" style="margin-top:1rem;text-align:center;max-width:none">Three conversations with people navigating therapy and mental health support in the last two years.</p>
+  </div>
+</div>
+
+<!-- SLIDE 14 · Anubhav Bose -->
+<div class="slide" data-slide="14">
   <div class="slide-inner">
-    <div class="slide-num fade-up">13 · Risks &amp; constraints</div>
-    <h2 class="fade-up">What I'd <strong>watch.</strong></h2>
-    <div class="alist fade-up">
-      <div class="aitem">
-        <h4>Competition</h4>
-        <p>Half the major IVF chains already advertise in-house counselling, so the play is the half that don't. Elfina's wedge: matched clinical therapy, a tier deeper.</p>
+    <div class="slide-num fade-up">14 · User 1</div>
+    <div class="ur-profile fade-up">
+      <div class="ur-photo">
+        <img src="ur-anubhav.jpg" alt="Anubhav Bose" onload="this.style.display='block';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.ur-photo-label').style.display='none'" onerror="this.remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c0-4.3 3.4-7.5 7.5-7.5s7.5 3.2 7.5 7.5"/></svg>
+        <span class="ur-photo-label">Photo</span>
       </div>
-      <div class="aitem">
-        <h4>Time-bounded value</h4>
-        <p>A fertility patient's therapy need fades when the journey ends, a shorter lifetime value than postpartum into parenting.</p>
-      </div>
-      <div class="aitem">
-        <h4>Legality</h4>
-        <p>Indian medical-conduct rules prohibit paying for referrals. The model is a partnership, not a paid channel; money flows clinic-to-Elfina for a service delivered.</p>
-      </div>
-      <div class="aitem">
-        <h4>The economics</h4>
-        <p>Everything rests on Elfina's revenue per patient and the matching-call conversion rate, the number to confirm before scaling.</p>
+      <div class="ur-bio">
+        <div class="ur-name">Anubhav Bose</div>
+        <div class="ur-meta-row">
+          <span class="ur-tag">30, Male</span>
+          <span class="ur-tag">Sales Manager</span>
+        </div>
+        <div class="ur-responses">
+          <div>
+            <div class="ur-q">When did you first try therapy, and what pushed you?</div>
+            <div class="ur-a">"It was 2023. I was going through a really bad breakup. I wasn't able to function properly, had a lot going on, and I genuinely thought I wouldn't come out of it." He was doing his MBA at the time, so budget was tight. He found a therapist through Facebook, specifically looking for low-cost, virtual-only options. "I didn't want to show my face. I wanted to stay anonymous and still be able to talk about it."</div>
+          </div>
+          <div>
+            <div class="ur-q">What made you stop the first time?</div>
+            <div class="ur-a">He continued for two months, believing therapy is a long-term game, like going to the gym. But there was no improvement. "I kept coming out of sessions feeling like I didn't want to talk about that today, but I was sort of pushed into it. I felt attacked." After two months he quit and took a month-long break from therapy entirely.</div>
+          </div>
+          <div>
+            <div class="ur-q">What brought you back, and what changed?</div>
+            <div class="ur-a">He found a new therapist through an online portal with good reviews, still looking for budget options (&#8377;1,200 per session). This time, it clicked. He continued for six to eight months and saw significant improvement. "The therapist was really nice." He hasn't gone back since, not because he doesn't believe in it, but life got busy. He knows he hasn't fully reached his goals yet.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SLIDE 14 · Sources -->
-<div class="slide" data-slide="14">
+<!-- SLIDE 15 · Vaidehi -->
+<div class="slide" data-slide="15">
   <div class="slide-inner">
-    <div class="slide-num fade-up">14 · Sources</div>
-    <h2 class="fade-up"><strong>Sources.</strong></h2>
-    <ul class="srcs fade-up">
-      <li>IVF cycles &amp; India fertility industry, <a href="https://www.biospectrumindia.com/news/17/27214/top-trends-driving-indias-ivf-industry-in-2026.html">BioSpectrum India</a></li>
-      <li>Therapy-relevant distress in fertility patients (~78%), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7139230/">PMC</a></li>
-      <li>In-clinic postpartum therapy uptake (90%+), <a href="https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2024.1284674/full">Frontiers</a></li>
-      <li>Postpartum depression prevalence in India (~22%), <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5689195/">PMC</a></li>
-      <li>National Mental Health Survey 2016, <a href="https://pubmed.ncbi.nlm.nih.gov/32126902/">PubMed</a></li>
-      <li>Fertility-clinic audit: procedures, pricing tier &amp; in-house counselling across 12 chains (clinic websites)</li>
-      <li>Elfina's customer, founder post, <a href="https://www.grapevine.in/post/why-i-started-elfina-582d5c7e-6755-4cdb-ac4e-8fecb1c8b3ad">Grapevine, "Why I started Elfina"</a></li>
-      <li>Elfina's age group &amp; pricing, founder post, <a href="https://www.grapevine.in/post/mental-health-founder-here-what-do-you-think-of-therapy-f1f8bae0-6b64-40b2-8fc4-1b6c6466cbfa">Grapevine</a></li>
-      <li>Elfina on its audience ("millennials in India"), <a href="https://www.linkedin.com/company/elfina-health">Elfina Health company profile</a></li>
-      <li>Referral fee-splitting prohibition: IMC Professional Conduct Regulations 2002, Clause 6.4</li>
-    </ul>
+    <div class="slide-num fade-up">15 · User 2</div>
+    <div class="ur-profile fade-up">
+      <div class="ur-photo">
+        <img src="ur-vaidehi.jpg" alt="Vaidehi" onload="this.style.display='block';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.ur-photo-label').style.display='none'" onerror="this.remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c0-4.3 3.4-7.5 7.5-7.5s7.5 3.2 7.5 7.5"/></svg>
+        <span class="ur-photo-label">Photo</span>
+      </div>
+      <div class="ur-bio">
+        <div class="ur-name">Vaidehi</div>
+        <div class="ur-meta-row">
+          <span class="ur-tag">27, Female</span>
+          <span class="ur-tag">Video Editor</span>
+        </div>
+        <div class="ur-responses">
+          <div>
+            <div class="ur-q">When did you first try therapy, and what pushed you?</div>
+            <div class="ur-a">She was 26 and going through a divorce. Panic attacks, anxiety, couldn't function. People around her suggested therapy, and she decided to seek help. She searched online and found a virtual therapist for &#8377;1,500. "She wasn't listening to me. Very surface-level solutions. She suggested having chamomile tea at night to calm down." No interest in the root cause. One session, and she stopped.</div>
+          </div>
+          <div>
+            <div class="ur-q">What made the second therapist different?</div>
+            <div class="ur-a">She instantly started searching again and found someone who got into depth and made her think. She did eight virtual sessions and genuinely felt better. "He really got into it." She would have continued, but personal issues and time management got in the way. When the issues resurfaced recently, she tried reconnecting with him, but he was running a clinic and his schedule was full. She couldn't get a session.</div>
+          </div>
+          <div>
+            <div class="ur-q">Where are you now with therapy?</div>
+            <div class="ur-a">She went to a new therapist through a friend's referral. One session so far, and it's going well. Her comfortable budget is &#8377;1,200 to &#8377;2,200 per session. "I wish I had been introduced to therapy earlier. There are some basic counsellors in school, but nothing that helps you understand how therapy can actually be helpful."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16 · Arpit Yadav -->
+<div class="slide" data-slide="16">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">16 · User 3</div>
+    <div class="ur-profile fade-up">
+      <div class="ur-photo">
+        <img src="ur-arpit.jpg" alt="Arpit Yadav" onload="this.style.display='block';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.ur-photo-label').style.display='none'" onerror="this.remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c0-4.3 3.4-7.5 7.5-7.5s7.5 3.2 7.5 7.5"/></svg>
+        <span class="ur-photo-label">Photo</span>
+      </div>
+      <div class="ur-bio">
+        <div class="ur-name">Arpit Yadav</div>
+        <div class="ur-meta-row">
+          <span class="ur-tag">31, Male</span>
+          <span class="ur-tag">IT Professional</span>
+        </div>
+        <div class="ur-responses">
+          <div>
+            <div class="ur-q">When did you first try therapy, and what pushed you?</div>
+            <div class="ur-a">He started in 2021. Anxiety and anger management. "I always knew I wanted to grow and didn't want to keep feeling this way." He found a therapist online through reviews. &#8377;1,200 per session. After two sessions, it didn't click. "I wanted to be understood, but it felt like solutions were being imposed. Textbook definitions being thrown at me."</div>
+          </div>
+          <div>
+            <div class="ur-q">What made you try again?</div>
+            <div class="ur-a">He didn't want to continue with the first therapist but still wanted help. Found the next one through a friend's referral. Online, &#8377;2,000 per session. This time it worked. "She taught me things without any judgement." He continued for six to eight months, hit the goals he had set for himself, and felt a real shift.</div>
+          </div>
+          <div>
+            <div class="ur-q">Where are you now with therapy?</div>
+            <div class="ur-a">He's slowed down to about once a month. He achieved what he set out to do in those first six to eight months, so now it's more of a check-in. He still goes back to the same therapist and has been with her for three years now. It's no longer intensive, just maintenance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 17 · Word map -->
+<div class="slide" data-slide="17">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">17 · Patterns</div>
+    <h2 class="fade-up">What they all <strong>said.</strong></h2>
+    <div class="ur-wordmap fade-up">
+      <span class="wm wm-5">not being heard</span>
+      <span class="wm wm-2">chamomile tea</span>
+      <span class="wm wm-4">friend's referral</span>
+      <span class="wm wm-3">couldn't function</span>
+      <span class="wm wm-1">Facebook</span>
+      <span class="wm wm-5">textbook solutions</span>
+      <span class="wm wm-3">virtual only</span>
+      <span class="wm wm-4">budget matters</span>
+      <span class="wm wm-2">anger management</span>
+      <span class="wm wm-5">felt attacked</span>
+      <span class="wm wm-1">online reviews</span>
+      <span class="wm wm-3">panic attacks</span>
+      <span class="wm wm-4">no judgement</span>
+      <span class="wm wm-2">divorce</span>
+      <span class="wm wm-1">stay anonymous</span>
+      <span class="wm wm-4">first therapist never works</span>
+      <span class="wm wm-3">&#8377;1,200 to &#8377;2,000</span>
+      <span class="wm wm-5">wanted to be understood</span>
+      <span class="wm wm-2">breakup</span>
+      <span class="wm wm-3">wish I started earlier</span>
+      <span class="wm wm-1">school counsellors</span>
+      <span class="wm wm-4">six months to see change</span>
+      <span class="wm wm-2">surface-level advice</span>
+      <span class="wm wm-3">still believe in therapy</span>
+      <span class="wm wm-1">life got busy</span>
+      <span class="wm wm-4">depth over fixes</span>
+      <span class="wm wm-2">long-term game</span>
+      <span class="wm wm-3">pushed to talk</span>
+      <span class="wm wm-1">once a month now</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 18 · Synthesis -->
+<div class="slide" data-slide="18">
+  <div class="slide-inner">
+    <div class="slide-num fade-up">18 · Synthesis</div>
+    <h2 class="fade-up">So, what did I <strong>learn?</strong></h2>
+    <div class="ur-synth fade-up">
+      <div class="ur-synth-card">
+        <div class="ur-synth-label">What surprised me</div>
+        <div class="ur-synth-title">Nobody found their therapist on the first try.</div>
+        <div class="ur-synth-body">All three people went through at least two therapists before landing on one that worked. The first attempt almost always failed: surface-level advice, feeling attacked, textbook responses. The real barrier isn't access to therapy. It's access to the <em>right</em> therapist.</div>
+      </div>
+      <div class="ur-synth-card is-green">
+        <div class="ur-synth-label">One insight for Elfina</div>
+        <div class="ur-synth-title">Double down on the match. Then make staying easy.</div>
+        <div class="ur-synth-body">Elfina's 94% first-match rate is the product. Market it hard: "You won't need a second therapist." Once someone finds the right fit, they want to stay. All three understood therapy is a long-term game. But people are price-sensitive because there's no instant result. They don't want to splurge when improvement takes months. That's the opening: discounting on <em>good</em> therapy. Session bundles, commitment pricing, loyalty rewards. Make the right therapist affordable to stick with.</div>
+      </div>
+    </div>
   </div>
 </div>
 
